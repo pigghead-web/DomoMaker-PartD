@@ -11,7 +11,7 @@ const router = (app) => {
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controller.Account.login);  // POST
 
   // SIGNUP
-  app.get('/signup', mid.requiresSecure, mid.requiresLogout, controller.Account.signupPage);  // GET
+  app.get('/getToken', mid.requiresSecure, controller.Account.getToken);  // PART D, GET 
   // mid: ensure secure; ensure they are logged out to attempt to sign up
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controller.Account.signup);  // POST
 

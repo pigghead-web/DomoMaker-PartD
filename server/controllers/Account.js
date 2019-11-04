@@ -12,11 +12,6 @@ const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
-const signupPage = (req, res) => {
-  // generate a new csrfToken for every request
-  res.render('signup', { csrfToken: req.csrfToken() });
-};
-
 const logout = (req, res) => {
   // remove a user's session. called on logout so that server knows a user is no longer logged in
   req.session.destroy();
@@ -105,9 +100,20 @@ const signup = (req, res) => {
   });
 };
 
+const getToken = (req, res) => {
+  const request = req;
+  const response = res;
+  
+  const csrfToken = {
+    csrfToken: request.csrfToken(),
+  };
+  
+  response.json(csrfToken);
+}
+
 // - EXPORTS -
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
-module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.getToken = getToken;

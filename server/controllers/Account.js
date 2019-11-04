@@ -103,13 +103,13 @@ const signup = (req, res) => {
 const getToken = (req, res) => {
   const request = req;
   const response = res;
-  
+
   const csrfToken = {
     csrfToken: request.csrfToken(),
   };
-  
+
   response.json(csrfToken);
-}
+};
 
 // - EXPORTS -
 module.exports.loginPage = loginPage;

@@ -132,4 +132,5 @@ const getToken = () => {
 
 $(document).ready(function() {
   getToken();
+  //console.log("Everything set up!");
 });

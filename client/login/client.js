@@ -21,7 +21,7 @@ const handleLogin = (e) => {
 const handleSignup = (e) => {
   e.preventDefault();
   
-  $('#domoMessage').animate({width:"hide"}, 350);
+  $("#domoMessage").animate({width:"hide"}, 350);
   
   if($('#user').val() == '' || $('#pass').val() == '' || $('#pass2').val() == '') {
     handleError("RAWR! All field are required");
@@ -32,9 +32,11 @@ const handleSignup = (e) => {
     handleError("RAWR! Passwords do not match");
     return false;
   }
-  
   // Grab the action portion of our signupForm
-  sendAjax('POST', $("signupForm").attr("action"), $("#signupForm").serialize(), redirect);
+  // signupForm action="/signup"
+  // Issue lies within our signupForm.attr("action") returning
+  // TYPE, ACTION, DATA, SUCCESS
+  sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
   
   return false;
 };
@@ -72,9 +74,9 @@ const SignupWindow = (props) => {
       <label htmlFor="username">Username: </label>
       <input id="user" type="text" name="username" placeholder="username" />
       <label htmlFor="pass">Password: </label>
-      <input id="pass" type="text" name="pass" placeholder="password" />
+      <input id="pass" type="password" name="pass" placeholder="password" />
       <label htmlFor="pass2">Re-type Password: </label>
-      <input id="pass2" type="text" name="pass2" placeholder="Re-type password" />
+      <input id="pass2" type="password" name="pass2" placeholder="Re-type password" />
       <input type="hidden" name="_csrf" value={props.csrf} />
       <input className="formSubmit" type="submit" value="Sign Up" />
     </form>
@@ -96,13 +98,6 @@ const createSignupWindow = (csrf) => {
     document.querySelector('#content')
   );
 };
-
-//const createSignupWindow = (csrf) => {
-//  ReactDOM.render(
-//    <signupWindow csrf={csrf} />,
-//    document.querySelector('#content')
-//  );
-//};
 
 // - SETUP -
 // * A setup function that will allow us to quickly switch between the two above UI layouts

@@ -23,7 +23,7 @@ var handleLogin = function handleLogin(e) {
 var handleSignup = function handleSignup(e) {
   e.preventDefault();
 
-  $('#domoMessage').animate({ width: "hide" }, 350);
+  $("#domoMessage").animate({ width: "hide" }, 350);
 
   if ($('#user').val() == '' || $('#pass').val() == '' || $('#pass2').val() == '') {
     handleError("RAWR! All field are required");
@@ -34,9 +34,11 @@ var handleSignup = function handleSignup(e) {
     handleError("RAWR! Passwords do not match");
     return false;
   }
-
   // Grab the action portion of our signupForm
-  sendAjax('POST', $("signupForm").attr("action"), $("#signupForm").serialize(), redirect);
+  // signupForm action="/signup"
+  // Issue lies within our signupForm.attr("action") returning
+  // TYPE, ACTION, DATA, SUCCESS
+  sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
 
   return false;
 };
@@ -91,13 +93,13 @@ var SignupWindow = function SignupWindow(props) {
       { htmlFor: 'pass' },
       'Password: '
     ),
-    React.createElement('input', { id: 'pass', type: 'text', name: 'pass', placeholder: 'password' }),
+    React.createElement('input', { id: 'pass', type: 'password', name: 'pass', placeholder: 'password' }),
     React.createElement(
       'label',
       { htmlFor: 'pass2' },
       'Re-type Password: '
     ),
-    React.createElement('input', { id: 'pass2', type: 'text', name: 'pass2', placeholder: 'Re-type password' }),
+    React.createElement('input', { id: 'pass2', type: 'password', name: 'pass2', placeholder: 'Re-type password' }),
     React.createElement('input', { type: 'hidden', name: '_csrf', value: props.csrf }),
     React.createElement('input', { className: 'formSubmit', type: 'submit', value: 'Sign Up' })
   );
@@ -112,13 +114,6 @@ var createSignupWindow = function createSignupWindow(csrf) {
   //console.log("successful bundling");
   ReactDOM.render(React.createElement(SignupWindow, { csrf: csrf }), document.querySelector('#content'));
 };
-
-//const createSignupWindow = (csrf) => {
-//  ReactDOM.render(
-//    <signupWindow csrf={csrf} />,
-//    document.querySelector('#content')
-//  );
-//};
 
 // - SETUP -
 // * A setup function that will allow us to quickly switch between the two above UI layouts
@@ -181,6 +176,7 @@ var sendAjax = function sendAjax(type, action, data, success) {
     dataType: "json",
     success: success,
     error: function error(xhr, status, _error) {
+      console.log(xhr.responseText);
       var messageObj = JSON.parse(xhr.responseText);
       handleError(messageObj.error);
     }

@@ -45,15 +45,15 @@ var handleSignup = function handleSignup(e) {
 // ** JSX is a templating language included in REACT. Quickly create + render UI w/ much higher
 //  * speed and optimization
 var LoginWindow = function LoginWindow(props) {
-  // return HTML from javascript, this is what JSX is 
+  // return HTML from javascript, this is what JSX is
+  //console.log("creating login window");
   return React.createElement(
     'form',
     { id: 'loginForm', name: 'loginForm',
       onSubmit: handleLogin,
       action: '/login',
       method: 'POST',
-      className: 'mainForm'
-    },
+      className: 'mainForm' },
     React.createElement(
       'label',
       { htmlFor: 'username' },
@@ -71,15 +71,15 @@ var LoginWindow = function LoginWindow(props) {
   );
 };
 
-var signupWindow = function signupWindow(props) {
+var SignupWindow = function SignupWindow(props) {
+  //console.log("creating signup window");
   return React.createElement(
     'form',
     { id: 'signupForm', name: 'signupForm',
       onSubmit: handleSignup,
       action: '/signup',
       method: 'POST',
-      className: 'mainForm'
-    },
+      className: 'mainForm' },
     React.createElement(
       'label',
       { htmlFor: 'username' },
@@ -105,13 +105,22 @@ var signupWindow = function signupWindow(props) {
 
 // - RENDER - 
 var createLoginWindow = function createLoginWindow(csrf) {
-  ReactDOM.render(React.createElement('loginWindow', { csrf: csrf }), document.querySelector('#content'));
+  ReactDOM.render(React.createElement(LoginWindow, { csrf: csrf }), document.querySelector('#content'));
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
-  ReactDOM.render(React.createElement('signupWindow', { csrf: csrf }), document.querySelector('#content'));
+  //console.log("successful bundling");
+  ReactDOM.render(React.createElement(SignupWindow, { csrf: csrf }), document.querySelector('#content'));
 };
 
+//const createSignupWindow = (csrf) => {
+//  ReactDOM.render(
+//    <signupWindow csrf={csrf} />,
+//    document.querySelector('#content')
+//  );
+//};
+
+// - SETUP -
 // * A setup function that will allow us to quickly switch between the two above UI layouts
 var setup = function setup(csrf) {
   // Hook up the functions to their respective buttons
@@ -123,6 +132,7 @@ var setup = function setup(csrf) {
     e.preventDefault();
     // once the signupButton is clicked, fetch the signup window via the signupWindow function
     createSignupWindow(csrf);
+    //console.log("Signup button clicked");
     return false;
   });
 
@@ -154,11 +164,11 @@ $(document).ready(function () {
 // * These functions will be shared across bundles
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  $("domoMessage").animate({ width: "toggle" }, 350);
+  $("#domoMessage").animate({ width: "toggle" }, 350);
 };
 
 var redirect = function redirect(response) {
-  $("#errorMessage").animate({ width: "hide" }, 350);
+  $("#domoMessage").animate({ width: "hide" }, 350);
   window.location = response.redirect;
 };
 

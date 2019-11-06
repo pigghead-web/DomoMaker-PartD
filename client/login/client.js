@@ -43,14 +43,14 @@ const handleSignup = (e) => {
 // ** JSX is a templating language included in REACT. Quickly create + render UI w/ much higher
 //  * speed and optimization
 const LoginWindow = (props) => {
-  // return HTML from javascript, this is what JSX is 
+  // return HTML from javascript, this is what JSX is
+  //console.log("creating login window");
   return (
     <form id="loginForm" name="loginForm"
           onSubmit={handleLogin}
           action="/login"
           method="POST"
-          className="mainForm"
-    >
+          className="mainForm">
       <label htmlFor="username">Username: </label>
       <input id="user" type="text" name="username" placeholder="username" />
       <label htmlFor="pass">Password: </label>
@@ -61,14 +61,14 @@ const LoginWindow = (props) => {
   );
 };
 
-const signupWindow = (props) => {
+const SignupWindow = (props) => {
+  //console.log("creating signup window");
   return (
     <form id="signupForm" name="signupForm"
-      onSubmit={handleSignup}
-      action="/signup"
-      method="POST"
-      className="mainForm"
-    >
+          onSubmit={handleSignup}
+          action="/signup"
+          method="POST"
+          className="mainForm">
       <label htmlFor="username">Username: </label>
       <input id="user" type="text" name="username" placeholder="username" />
       <label htmlFor="pass">Password: </label>
@@ -76,8 +76,7 @@ const signupWindow = (props) => {
       <label htmlFor="pass2">Re-type Password: </label>
       <input id="pass2" type="text" name="pass2" placeholder="Re-type password" />
       <input type="hidden" name="_csrf" value={props.csrf} />
-      <input className="formSubmit" type="submit" value="Sign Up"/>
-    
+      <input className="formSubmit" type="submit" value="Sign Up" />
     </form>
   );
 };
@@ -85,18 +84,27 @@ const signupWindow = (props) => {
 // - RENDER - 
 const createLoginWindow = (csrf) => {
   ReactDOM.render(
-    <loginWindow csrf={csrf} />,
+    <LoginWindow csrf={csrf} />,
     document.querySelector('#content')
   );
 };
 
 const createSignupWindow = (csrf) => {
+  //console.log("successful bundling");
   ReactDOM.render(
-    <signupWindow csrf={csrf} />,
+    <SignupWindow csrf={csrf} />,
     document.querySelector('#content')
   );
 };
 
+//const createSignupWindow = (csrf) => {
+//  ReactDOM.render(
+//    <signupWindow csrf={csrf} />,
+//    document.querySelector('#content')
+//  );
+//};
+
+// - SETUP -
 // * A setup function that will allow us to quickly switch between the two above UI layouts
 const setup = (csrf) => {
   // Hook up the functions to their respective buttons
@@ -108,6 +116,7 @@ const setup = (csrf) => {
     e.preventDefault();
     // once the signupButton is clicked, fetch the signup window via the signupWindow function
     createSignupWindow(csrf);
+    //console.log("Signup button clicked");
     return false;
   });
   

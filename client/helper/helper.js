@@ -1,11 +1,11 @@
 // * These functions will be shared across bundles
 const handleError = (message) => {
   $("#errorMessage").text(message);
-  $("domoMessage").animate({width: "toggle"}, 350);
+  $("#domoMessage").animate({width: "toggle"}, 350);
 }
 
 const redirect = (response) => {
-  $("#errorMessage").animate({width:"hide"}, 350);
+  $("#domoMessage").animate({width:"hide"}, 350);
   window.location = response.redirect;
 }
 

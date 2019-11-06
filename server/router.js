@@ -23,6 +23,9 @@ const router = (app) => {
   app.get('/maker', mid.requiresLogin, controller.Domo.makerPage);  // GET
   app.post('/maker', mid.requiresLogin, controller.Domo.makeDomo);  // POST
 
+  // GET DOMOS
+  app.get('/getDomos', mid.requiresLogin, controller.Domo.getDomos);  // GET
+
   // /
   app.get('/', mid.requiresSecure, mid.requiresLogout, controller.Account.loginPage);  // DEFAULT
 };

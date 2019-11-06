@@ -15,7 +15,7 @@
     "start": "node ./server/app.js",
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests complete\"",
-    "buildLoginBundle": "babel ./client/login .client/helper --presets react --out-file ./hosted/loginBundle.js",
+    "buildLoginBundle": "babel ./client/login ./client/helper --presets react --out-file ./hosted/loginBundle.js",
     "buildAppBundle": "babel ./client/app ./client/helper --presets react --out-file ./hosted/bundle.js"
   },
   "keywords": [

@@ -28,6 +28,7 @@ const deleteDomo = (e) => {
   sendAjax('GET', '/deleteDomo', $('#deleteDomoForm').serialize(), function() {
     // Reload after the delete request is sent
     loadDomosFromServer();
+    console.log("Delete processed");
   });
   
   return false;
@@ -68,7 +69,7 @@ const DomoList = function(props) {
   }
   
   const domoNodes = props.domos.map(function(domo) {
-    //console.log(domo);
+    console.log(domo);
     return (
       <div key={domo._id} className="domo">
         <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />

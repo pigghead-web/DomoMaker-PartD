@@ -74,7 +74,7 @@ const deleteDomo = (req, res) => {
   const request = req;
   const response = res;
 
-  return Domo.DomoModel.deleteDomo(req.body.name, request.session.account._id, (err, docs) => {
+  return Domo.DomoModel.deleteDomo(request.session.Domo.name, request.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return response.status(400).json({ error: 'An error occured' });

@@ -26,6 +26,9 @@ const router = (app) => {
   // GET DOMOS
   app.get('/getDomos', mid.requiresLogin, controller.Domo.getDomos);  // GET
 
+  // DELETE DOMO
+  app.get('/deleteDomo', mid.requiresLogin, controller.Domo.deleteDomo);
+
   // /
   app.get('/', mid.requiresSecure, mid.requiresLogout, controller.Account.loginPage);  // DEFAULT
 };

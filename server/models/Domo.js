@@ -60,12 +60,12 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
 };
 
 // Delete a domo
-DomoSchema.statics.deleteDomo = (dName, ownerId, callback) => {
+DomoSchema.statics.deleteDomo = (dName, callback) => {
   const search = {
-    owner: convertId(ownerId),
-    name: dName,
+    // owner: convertId(ownerId),
+    name: dName,  // hard coding this will remove the domo no problem
   };
-  return DomoModel.deleteOne(search).exec(callback);
+  return DomoModel.deleteOne(search).select('name').exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);

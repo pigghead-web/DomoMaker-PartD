@@ -9,6 +9,7 @@ const handleDomo = (e) => {
     return false;
   }
   
+  console.log($('#domoForm').serialize());
   // send as ajax request
   sendAjax('POST', $('#domoForm').attr('#action'), $('#domoForm').serialize(), function() {   
     loadDomosFromServer();
@@ -18,7 +19,6 @@ const handleDomo = (e) => {
 };
 
 const deleteDomo = (e) => {
-  //console.log("Delete Domo triggered");
   e.preventDefault();
   // 2 problems
   // Delete the div element associated with the button click
@@ -61,7 +61,7 @@ const DomoForm = (props) => {
 
 const DomoList = function(props) {
   if (props.domos.length === 0) {
-    return ( 
+    return (
       <div className="domoList">
         <h3 className="emptyDomo">No Domos yet</h3>
       </div>

@@ -11,6 +11,7 @@ var handleDomo = function handleDomo(e) {
     return false;
   }
 
+  console.log($('#domoForm').serialize());
   // send as ajax request
   sendAjax('POST', $('#domoForm').attr('#action'), $('#domoForm').serialize(), function () {
     loadDomosFromServer();
@@ -20,7 +21,6 @@ var handleDomo = function handleDomo(e) {
 };
 
 var deleteDomo = function deleteDomo(e) {
-  //console.log("Delete Domo triggered");
   e.preventDefault();
   // 2 problems
   // Delete the div element associated with the button click
